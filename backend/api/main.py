@@ -34,7 +34,8 @@ def get_stations():
 
 @app.get("/api/fuel/history")
 def get_fuel_history():
-    data_path = r"D:\antartic\data\processed\modeling_data.csv"
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    data_path = os.path.join(base_dir, "data", "processed", "modeling_data.csv")
     if not os.path.exists(data_path):
         return []
     df = pd.read_csv(data_path)
@@ -44,7 +45,8 @@ def get_fuel_history():
 
 @app.get("/api/model/metrics")
 def get_model_metrics():
-    metrics_path = r"D:\antartic\backend\models\metrics.json"
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    metrics_path = os.path.join(base_dir, "models", "metrics.json")
     if os.path.exists(metrics_path):
         with open(metrics_path, 'r') as f:
             return json.load(f)
@@ -52,7 +54,8 @@ def get_model_metrics():
 
 @app.get("/api/model/features")
 def get_model_features():
-    path = r"D:\antartic\backend\models\feature_importance.csv"
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    path = os.path.join(base_dir, "models", "feature_importance.csv")
     if os.path.exists(path):
         df = pd.read_csv(path)
         return df.to_dict(orient='records')
@@ -60,7 +63,8 @@ def get_model_features():
 
 @app.get("/api/fuel/forecast")
 def get_forecast():
-    path = r"D:\antartic\backend\models\test_predictions.csv"
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    path = os.path.join(base_dir, "models", "test_predictions.csv")
     if os.path.exists(path):
         df = pd.read_csv(path)
         # Return a subset
