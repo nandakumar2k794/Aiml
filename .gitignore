@@ -1,0 +1,20 @@
+# Datasets and processed data
+data/
+
+# Python / Backend
+backend/venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
